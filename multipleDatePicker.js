@@ -95,7 +95,7 @@ angular.module('multipleDatePicker', [])
         /*To display days of week names in moment.lang*/
         var momentDaysOfWeek = moment().localeData()._weekdaysMin,
           days = [];
-        
+
         for(var i = 1; i < 7; i++){
           days.push(momentDaysOfWeek[i]);
         }
@@ -105,13 +105,13 @@ angular.module('multipleDatePicker', [])
         }else{
           days.push(momentDaysOfWeek[0]);
         }
-        
+
         return days;
       };
 
       /*scope functions*/
       scope.$watch('daysSelected', function(newValue) {
-        if(newValue){
+        if(newValue && newValue[0]!=='avenir'){
           var momentDates = [];
           newValue.map(function(timestamp){
             momentDates.push(moment(timestamp));
@@ -141,13 +141,13 @@ angular.module('multipleDatePicker', [])
       scope.weekDaysOff = scope.weekDaysOff || [];
       scope.daysOff = scope.daysOff || [];
       scope.disableBackButton = false;
-      scope.disableNextButton = false;      
+      scope.disableNextButton = false;
       scope.daysOfWeek = getDaysOfWeek();
 
       /**
        * Called when user clicks a date
        * @param Event event the click event
-       * @param Moment momentDate a moment object extended with selected and isSelectable booleans 
+       * @param Moment momentDate a moment object extended with selected and isSelectable booleans
        * @see #momentDate
        * @callback dayClick
        * @callback callback deprecated
@@ -234,7 +234,7 @@ angular.module('multipleDatePicker', [])
         return scope.allDaysOff ||
           (angular.isArray(scope.weekDaysOff) && scope.weekDaysOff.some(function(dayOff){
             return date.day() === dayOff;
-          })) || 
+          })) ||
           (angular.isArray(scope.daysOff) && scope.daysOff.some(function(dayOff){
             return date.isSame(dayOff, 'day');
           }));
@@ -281,7 +281,7 @@ angular.module('multipleDatePicker', [])
         if(lastDayOfMonth.day() === 0 && !scope.sundayFirstDay){
           emptyLastDaysStartIndex = 0;
         }else{
-          emptyLastDaysStartIndex -= lastDayOfMonth.day();          
+          emptyLastDaysStartIndex -= lastDayOfMonth.day();
         }
         for (var k = emptyLastDaysStartIndex; k > 0; k--) {
           scope.emptyLastDays.push({});
