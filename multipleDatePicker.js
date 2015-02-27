@@ -117,6 +117,7 @@ angular.module('multipleDatePicker', [])
             momentDates.push(moment(timestamp));
           });
           scope.convertedDaysSelected = momentDates;
+          scope.month = momentDates[0];
           scope.generate();
         }
       }, true);
