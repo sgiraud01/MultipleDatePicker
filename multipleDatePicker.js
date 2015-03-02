@@ -111,7 +111,7 @@ angular.module('multipleDatePicker', [])
 
       /*scope functions*/
       scope.$watch('daysSelected', function(newValue) {
-        if(newValue && newValue[0]!=='avenir'){
+        if(newValue && newValue[0]!=='avenir' && newValue[0]!=='semaine'){
           var momentDates = [];
           newValue.map(function(timestamp){
             momentDates.push(moment(timestamp));
